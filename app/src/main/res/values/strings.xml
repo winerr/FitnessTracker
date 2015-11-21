@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fitness tracker</string>
+    <string name="lb_name_1">Для початку виконання вправи натисніть кнопку</string>
+    <string name="bat_sart">Почати</string>
+    <string name="bat_stop">Закінчити</string>
+    <string name="priss_srt">Кількість присідань:</string>
+</resources>

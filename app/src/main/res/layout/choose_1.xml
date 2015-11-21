@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:weightSum="1"
+    android:background="@color/mainBackground"
+    >
+
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/lb_name_1"
+        android:id="@+id/textView"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bat_sart"
+        android:id="@+id/start"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:onClick="start" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bat_stop"
+        android:id="@+id/stop"
+        android:layout_alignTop="@+id/start"
+        android:layout_centerHorizontal="true"
+        android:onClick="stop"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/priss_srt"
+        android:id="@+id/pris"
+        android:layout_below="@+id/start"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/lb1"
+        android:layout_below="@+id/pris"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Затрачений час:"
+        android:id="@+id/time"
+        android:layout_below="@+id/lb1"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/lb2"
+        android:layout_below="@+id/time"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Затрачена енергія:"
+        android:id="@+id/energi"
+        android:layout_below="@+id/lb2"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/lb3"
+        android:layout_below="@+id/energi"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view2"
+        android:src="@drawable/exit_to_app"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="fabClick" />
+
+</RelativeLayout>
