@@ -26,7 +26,7 @@ class data{
 
     private int count;
     private double prevA;
-
+    private boolean label;
 
 
     private final float g = 9.9F;
@@ -34,10 +34,20 @@ class data{
     data (){
         count = 0;
         prevA = 0;
+        label = false;
     }
 
     void pris(double a){
 
+        if(a>4 && label){
+            count++;
+            label = true;
+        }
+        if(a<0.5 && !label){
+            label = true;
+        }
+
+        /*
         if (a>4){
             if(prevA>a){
                 count++;
@@ -46,6 +56,7 @@ class data{
                 prevA = a;
             }
         }
+        */
     }
 
 
@@ -55,17 +66,17 @@ class data{
     public void setPrevA(int i) { prevA = i; }
 
     public int getCount() {
-        return count;
+        return (count/2);
     }
 
     public double getTime(int index) {
-        return (index*0.1);
+        return (index*0.15);
     }
 
     public double getEnergi(){
         double mass = (67/3)*2;
         double s = 0.5;
-        return mass * g * s * count;
+        return (mass * g * s * (count/2))*0.000239005737;
     }
 }
 
@@ -138,6 +149,7 @@ public class StartActivity extends AppCompatActivity implements SensorEventListe
         toolbar.inflateMenu(R.menu.menu);
     }
 
+
     public void fabClick(View v){
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -164,10 +176,10 @@ public class StartActivity extends AppCompatActivity implements SensorEventListe
         myWork.setPrevA(0);
 
         time.setVisibility(View.INVISIBLE);
-        pris.setVisibility(View.INVISIBLE);
+        pris.setVisibility(View.VISIBLE);
         energi.setVisibility(View.INVISIBLE);
         lb1.setVisibility(View.INVISIBLE);
-        lb2.setVisibility(View.INVISIBLE);
+        lb2.setVisibility(View.VISIBLE);
         lb3.setVisibility(View.INVISIBLE);
 
 
@@ -175,7 +187,7 @@ public class StartActivity extends AppCompatActivity implements SensorEventListe
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if( myWork.getCount() > priss){
+                /*if( myWork.getCount() > priss){
                     priss = myWork.getCount();
                     lb = true;
                 }else{
@@ -186,8 +198,23 @@ public class StartActivity extends AppCompatActivity implements SensorEventListe
                     }
                 }
                 index++;
+            }*/
+                if( myWork.getCount() > priss){
+                    priss = myWork.getCount();
+//                    lb = true;
+//                    setL();
+                    index++;
+                }else{
+                    SensorData();
+                    index++;
+                }
             }
-        }, 0, 100);
+        }, 0, 150);
+    }
+
+
+    synchronized public  void setL(){
+        pris.setText(Integer.toString(myWork.getCount()));
     }
 
     public void stop(View v){
@@ -204,9 +231,10 @@ public class StartActivity extends AppCompatActivity implements SensorEventListe
         lb3.setVisibility(View.VISIBLE);
 
 
-        time.setText(Double.toString(myWork.getTime(index)));
+        String s = myWork.getTime(index) + " секунд";
+        time.setText(s);
         pris.setText(Integer.toString(myWork.getCount()));
-        energi.setText(Double.toString(myWork.getEnergi()));
+        energi.setText(Double.toString(myWork.getEnergi()) + " ккал");
 
 
     }
@@ -228,7 +256,9 @@ public class StartActivity extends AppCompatActivity implements SensorEventListe
             s = se;
             j = false;
         }
-
+        if( myWork.getCount() > priss){
+            pris.setText(Integer.toString(myWork.getCount()));
+        }
     }
 
     @Override
